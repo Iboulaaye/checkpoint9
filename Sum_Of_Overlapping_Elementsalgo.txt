@@ -1,0 +1,60 @@
+ALGORITHM Sum_Of_Overlapping_Elements
+VAR
+    Sum: INTEGER := 0;
+    i,j: INTEGER := 0;
+    m,n: INTEGER;
+    Set1 : ARRAY_OF INTEGER[m];
+    Set2 : ARRAY_OF INTEGER[n];
+    verif : BOOLEAN;
+BEGIN
+      //Demande à l'utilisateur de donner la taille des 2 tableaux
+    Write("Donnez la taille du set 1");
+    Read(m);
+    Write("Donnez la taille du set 2");
+    Read(n);
+
+    // on demande à l'utilisateur de renseigner les données des tableaux 1 et 2
+    FOR i FROM 0 TO m-1 STEP 1  DO
+        Read(Set1[i]);
+    END_FOR
+    FOR i FROM 0 TO n-1 STEP 1  DO
+        Read(Set1[j]);
+    END_FOR
+
+    //On vérifie d'abord s'il n'existe pas de doublon dans le tableau
+    // Pour le tableau 1
+    FOR i FROM 0 TO m-1 STEP 1  DO
+        IF (Set[i]==Set[i]+1) THEN
+            Write("Erreur il existe un doublon")
+        END_IF
+    END_FOR
+    // pour le tableau 2
+    FOR i FROM 0 TO m-1 STEP 1  DO
+        IF (Set[i]==Set[i]+1) THEN
+            Write("Erreur il existe un doublon")
+        END_IF
+    END_FOR
+    // on crée une boucle imbriguée afin de comparer les elts du tableau 1 aux elements du tableau 2
+    FOR i FROM 0 TO m-1 STEP 1  DO
+        FOR j FROM 0 TO n-1 STEP 1 DO
+            IF (Set1[i] == Set2[j]) THEN // cette condition permet de verifier si l'elt existe pas dans le tableau 2
+                verif=True; // dans ce cas le boolean prend la valeur de true 
+            END_IF
+            IF (verif = True) THEN
+                Sum = Sum + Set1[i] // sum recoit la valeur de l'elt si verif devient true 
+            END_IF
+        END_FOR
+    END_FOR
+
+    // on inverse les 2 tableaux afin de vérifier si les elts du tableau 2 sont presents ou non dans le tableau 1 
+    FOR j FROM 0 TO n-1 STEP 1  DO
+        FOR i FROM 0 TO m-1 STEP 1 DO
+            IF (Set2[i] == Set1[i]) THEN // cette condition permet de verifier si l'elt n'existe pas dans le tableau 2
+                verif=True; // dans ce cas le boolean prend la valeur de true 
+            END_IF
+            IF (verif = True) THEN
+                Sum = Sum + Set2[j] // sum recoit la valeur de l'elt si verif devient true 
+            END_IF
+        END_FOR
+    END_FOR
+END
